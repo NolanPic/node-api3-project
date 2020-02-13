@@ -66,7 +66,7 @@ router.delete('/:id', validateUserId, (req, res) => {
 
 router.put('/:id', validateUserId, (req, res) => {
   const { id } = req.params;
-  const user = req.user; // <== from validateUserId middleware
+  const user = req.body; // <== from validateUserId middleware
   userDb.update(id, user).then(updated => {
     res.status(200).json(updated);
   }).catch(err => {
