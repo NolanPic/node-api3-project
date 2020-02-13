@@ -16,7 +16,7 @@ router.post('/', validateUser, (req, res) => {
 });
 
 router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
-  const { userId } = req.params;
+  const { id: userId } = req.params;
   const post = { ...req.body, user_id: userId };
   postDb.insert(post).then(created => {
     res.status(201).json(created);
@@ -66,7 +66,7 @@ router.delete('/:id', validateUserId, (req, res) => {
 
 router.put('/:id', validateUserId, (req, res) => {
   const { id } = req.params;
-  const user = req.body; // <== from validateUserId middleware
+  const user = req.body;
   userDb.update(id, user).then(updated => {
     res.status(200).json(updated);
   }).catch(err => {
