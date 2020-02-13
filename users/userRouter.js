@@ -46,7 +46,7 @@ router.get('/:id', validateUserId, (req, res) => {
 });
 
 router.get('/:id/posts', validateUserId, (req, res) => {
-  const { userId } = req.params;
+  const { id: userId } = req.params;
   userDb.getUserPosts(userId).then(posts => {
     res.status(200).json(posts);
   }).catch(err => {
